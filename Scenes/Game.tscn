@@ -1,0 +1,196 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://Tilesets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/character.png" type="Texture" id=3]
+[ext_resource path="res://Assets/noise.png" type="Texture" id=4]
+[ext_resource path="res://Assets/light.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=6]
+[ext_resource path="res://Assets/enemy.png" type="Texture" id=7]
+[ext_resource path="res://Assets/exclamation.png" type="Texture" id=8]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 19.9758
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 63.6922
+
+[sub_resource type="CircleShape2D" id=3]
+
+custom_solver_bias = 0.0
+radius = 96.7584
+
+[node name="World" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+color = Color( 0.246094, 0.246094, 0.246094, 1 )
+
+[node name="Navigation" type="Navigation2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Navigation"]
+
+transform/pos = Vector2( 0, -1 )
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 64, 64 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 131070, 536870914, 131071, 536870914, 65536, 536870914, 65537, 536870914, 65538, 536870914, 65539, 536870914, 65540, 536870914, 65541, 536870914, 65542, 536870914, 196606, 536870914, 196607, 536870912, 131072, 536870912, 131073, 536870912, 131074, 536870912, 131075, 536870912, 131076, 536870912, 131077, 536870912, 131078, 536870914, 262139, 536870914, 262140, 536870913, 262141, 536870913, 262142, 536870913, 262143, 536870912, 196608, 536870912, 196609, 536870914, 196610, 536870912, 196611, 536870913, 196612, 536870912, 196613, 536870912, 196614, 536870914, 196615, 536870913, 196616, 536870914, 327675, 536870914, 327676, 536870912, 327677, 536870912, 327678, 536870912, 327679, 536870912, 262144, 536870912, 262145, 536870914, 262146, 536870912, 262147, 536870912, 262148, 536870912, 262149, 536870913, 262150, 536870913, 262151, 536870912, 262152, 536870914, 393211, 536870914, 393212, 536870912, 393213, 536870914, 393214, 536870914, 393215, 536870912, 327680, 536870912, 327681, 536870913, 327682, 536870912, 327683, 536870912, 327684, 536870912, 327685, 536870912, 327686, 536870912, 327687, 536870912, 327688, 536870914, 458747, 536870914, 458748, 536870912, 458749, 536870914, 458750, 536870914, 458751, 536870914, 393216, 536870912, 393217, 536870912, 393218, 536870912, 393219, 536870912, 393220, 536870913, 393221, 536870914, 393222, 536870912, 393223, 536870912, 393224, 536870914, 524283, 536870914, 524284, 536870912, 524285, 536870913, 524286, 536870914, 524287, 536870914, 458752, 536870914, 458753, 536870912, 458754, 536870912, 458755, 536870912, 458756, 536870912, 458757, 536870914, 458758, 536870912, 458759, 536870912, 458760, 536870914, 589819, 536870914, 589820, 536870912, 589821, 536870912, 589822, 536870913, 589823, 536870913, 524288, 536870913, 524289, 536870913, 524290, 536870913, 524291, 536870913, 524292, 536870913, 524293, 536870913, 524294, 536870912, 524295, 536870912, 524296, 536870914, 655355, 536870914, 655356, 536870912, 655357, 536870912, 655358, 536870912, 655359, 536870912, 589824, 536870912, 589825, 536870912, 589826, 536870912, 589827, 536870912, 589828, 536870912, 589829, 536870912, 589830, 536870912, 589831, 536870912, 589832, 536870914, 720891, 536870913, 720892, 536870913, 720893, 536870913, 720894, 536870913, 720895, 536870913, 655360, 536870913, 655361, 536870913, 655362, 536870913, 655363, 536870913, 655364, 536870913, 655365, 536870913, 655366, 536870913, 655367, 536870913, 655368, 536870913 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+
+transform/pos = Vector2( 192, 416 )
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0.989624, 14.8445 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+
+transform/scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+
+transform/pos = Vector2( 0.989624, 14.8445 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = true
+smoothing/speed = 3.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="SoundArea" type="Area2D" parent="Player"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitorable = false
+collision/layers = 2
+collision/mask = 2
+
+[node name="Shape" type="CollisionShape2D" parent="Player/SoundArea"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Player/SoundArea"]
+
+visibility/opacity = 0.0
+transform/scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 4 )
+modulate = Color( 0.500565, 0.770458, 0.949219, 1 )
+
+[node name="Light2D" type="Light2D" parent="Player"]
+
+enabled = true
+editor_only = false
+texture = ExtResource( 5 )
+offset = Vector2( 0, 0 )
+scale = 4.0
+color = Color( 1, 1, 1, 1 )
+energy = 0.77
+mode = 0
+range/height = 0.0
+range/z_min = -1024
+range/z_max = 1024
+range/layer_min = 0
+range/layer_max = 0
+range/item_mask = 1
+shadow/enabled = true
+shadow/color = Color( 0, 0, 0, 0 )
+shadow/buffer_size = 2048
+shadow/esm_multiplier = 80.0
+shadow/item_mask = 1
+
+[node name="Enemy" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+transform/pos = Vector2( -9.15405, 172.096 )
+transform/scale = Vector2( 0.4, 0.4 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -12.5, -2.5 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+script/script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+
+transform/pos = Vector2( -12.5, -2.5 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Enemy"]
+
+transform/pos = Vector2( -12.5, -5 )
+transform/scale = Vector2( 1, 1 )
+texture = ExtResource( 7 )
+
+[node name="Exclamation" type="Sprite" parent="Enemy"]
+
+visibility/visible = false
+transform/pos = Vector2( -7.73353, -129.536 )
+texture = ExtResource( 8 )
+
+[node name="Ray" type="RayCast2D" parent="Enemy"]
+
+enabled = false
+cast_to = Vector2( 0, 50 )
+layer_mask = 1
+type_mask = 15
+
+[connection signal="area_enter" from="Player/SoundArea" to="Player" method="_on_SoundArea_area_enter"]
+
+[connection signal="area_enter" from="Enemy" to="Enemy" method="_on_Enemy_area_enter"]
+
+[connection signal="area_exit" from="Enemy" to="Enemy" method="_on_Enemy_area_exit"]
+
+
