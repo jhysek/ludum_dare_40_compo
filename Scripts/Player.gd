@@ -9,39 +9,50 @@ var VEC_DOWN = Vector2(0, 1)
 var SPEED = 200
 
 var velocity = Vector2(0,0)
-var noise_radius = 0
-var zero_noise_radius = 50
-var target_noise_radius = 0
-var making_noise = false
-var walk_noise = 200
-var noise_cooldown = 0
+var is_moving = false
+var walk_noise = 100
 
-onready var shape = get_node("SoundArea/Shape").get_shape()
+var collected  = 0
 
 func _ready():
 	set_fixed_process(true)
 
-func makeNoise(radius):
-	noise_radius = shape.get_radius()
-	target_noise_radius = radius
-	making_noise = true
+func setOrientation(velocity):
+	if velocity.x < 0:
+		get_node("Sprite").set_flip_h(true)
+	else:
+		get_node("Sprite").set_flip_h(false)
+
+func setAnimation(velocity, new_velocity):
+	var current_animation = get_node("Sprite/AnimationPlayer").get_current_animation()
+	var new_animation     = "Idle"
 	
+	if new_velocity.y > 0:
+		new_animation = "WalkDown"
+		
+	if new_velocity.y < -0:
+		new_animation = "WalkUp"
+		
+	if new_velocity.x > 0:
+		new_animation = "WalkRight"
+	
+	if new_velocity.x < 0:
+		new_animation = "WalkLeft"
+		
+	if current_animation != new_animation:
+		get_node("Sprite/AnimationPlayer").play(new_animation)
+		
+		
 func _fixed_process(delta):
 	var new_velocity = Vector2(0,0)
 
-	if making_noise:	
-		if noise_radius < target_noise_radius:
-			noise_radius = lerp(noise_radius, target_noise_radius, 50 * delta)
-			shape.set_radius(noise_radius)
-		else:
-			shape.set_radius(zero_noise_radius)
-			making_noise = false
-	
 	if Input.is_action_pressed("ui_left"):
 		new_velocity += VEC_LEFT
+		setOrientation(new_velocity)
 		
 	if Input.is_action_pressed("ui_right"):
 		new_velocity += VEC_RIGHT
+		setOrientation(new_velocity)
 		
 	if Input.is_action_pressed("ui_up"):
 		new_velocity += VEC_UP
@@ -50,14 +61,11 @@ func _fixed_process(delta):
 		new_velocity += VEC_DOWN
 		
 	if Input.is_action_pressed("ui_accept"):
-		makeNoise(300)
-
-	noise_cooldown -= 5*delta
-	if new_velocity != Vector2(0,0):
-		print(noise_cooldown)
-		if noise_cooldown <= 0:
-			noise_cooldown = 3
-			makeNoise(walk_noise)
+		get_node("SoundArea").makeNoise(100)
+		
+	is_moving = new_velocity != Vector2(0, 0)
+	
+	setAnimation(velocity, new_velocity)
 		
 	velocity.x = lerp(velocity.x, new_velocity.x * SPEED * delta, 0.2)
 	velocity.y = lerp(velocity.y, new_velocity.y * SPEED * delta, 0.2)
@@ -74,4 +82,7 @@ func _on_SoundArea_area_enter( area ):
 		area.goal = get_pos()
 		area.nav  = get_node("/root/World/Navigation")
 		area.chasing = true
-	
+		
+func itemCollected():
+	collected += 1
+	get_node("/root/World/CanvasLayer/UI/CollectedLabel").set_text(str(collected) + " / " + str(10))

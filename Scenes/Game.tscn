@@ -1,33 +1,371 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=25 format=1]
 
 [ext_resource path="res://Tilesets/tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
-[ext_resource path="res://Assets/character.png" type="Texture" id=3]
-[ext_resource path="res://Assets/noise.png" type="Texture" id=4]
-[ext_resource path="res://Assets/light.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=6]
-[ext_resource path="res://Assets/enemy.png" type="Texture" id=7]
-[ext_resource path="res://Assets/exclamation.png" type="Texture" id=8]
+[ext_resource path="res://Assets/character_up.png" type="Texture" id=3]
+[ext_resource path="res://Assets/hand.png" type="Texture" id=4]
+[ext_resource path="res://Assets/character_idle.png" type="Texture" id=5]
+[ext_resource path="res://Assets/character.png" type="Texture" id=6]
+[ext_resource path="res://Scripts/SoundArea.gd" type="Script" id=7]
+[ext_resource path="res://Assets/noise.png" type="Texture" id=8]
+[ext_resource path="res://Assets/light.png" type="Texture" id=9]
+[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=10]
+[ext_resource path="res://Assets/enemy.png" type="Texture" id=11]
+[ext_resource path="res://Assets/exclamation.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/Collectable.gd" type="Script" id=13]
+[ext_resource path="res://icon.png" type="Texture" id=14]
+[ext_resource path="res://Assets/BlogSansBold30.fnt" type="BitmapFont" id=15]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 19.9758
 
+[sub_resource type="Animation" id=5]
+
+resource/name = "Idle"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/scale")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.4, 0.4 ), Vector2( 0.4, 0.38 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandRight:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.5, 0.7 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -37.6423, 34.1593 ), Vector2( -37.6423, 39.1694 ), Vector2( -37.1869, 42.7998 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HandLeft:transform/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.5, 0.7 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 42.3576, 33.2484 ), Vector2( 43.2685, 38.5221 ), Vector2( 42.813, 41.469 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:transform/pos")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 1.82184 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:texture")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HandLeft:visibility/behind_parent")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("HandRight:visibility/behind_parent")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+
+resource/name = "WalkDown"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandRight:visibility/behind_parent")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HandRight:transform/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.1, 0.3 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -37.6423, 34.1593 ), Vector2( -37.6423, 41.4467 ), Vector2( -39.4641, 25.9612 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HandLeft:visibility/behind_parent")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HandLeft:transform/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0, 0.1, 0.3 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 42.3576, 33.2484 ), Vector2( 42.3576, 25.9611 ), Vector2( 42.3576, 43.724 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+
+resource/name = "WalkLeft"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:flip_h")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandRight:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 35.6865, 41.4467 ), Vector2( 4.71533, 46.4567 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HandLeft:transform/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -45.5458, 32.3376 ), Vector2( -15.9409, 29.1495 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HandLeft:visibility/behind_parent")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath(".:texture")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HandRight:visibility/behind_parent")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=6]
+
+resource/name = "WalkRight"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("HandLeft:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 43.2685, 29.1493 ), Vector2( 25.5057, 23.2284 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandRight:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.2 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -37.6423, 34.1593 ), Vector2( -7.58203, 45.5458 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:flip_h")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:texture")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HandLeft:visibility/behind_parent")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("HandRight:visibility/behind_parent")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=9]
+
+resource/name = "WalkUp"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HandRight:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.1, 0.3 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -37.6423, 34.1593 ), Vector2( -39.4641, 41.4467 ), Vector2( -40.375, 24.1394 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HandRight:visibility/behind_parent")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HandLeft:visibility/behind_parent")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("HandLeft:transform/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = {
+"times": FloatArray( 0, 0.1, 0.3 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 42.3576, 33.2484 ), Vector2( 42.8131, 25.5057 ), Vector2( 42.8131, 40.5359 ) ]
+}
+
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 63.6922
+radius = 200.0
 
 [sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 96.7584
 
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 28.7445
+
 [node name="World" type="Node2D"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
+visibility/visible = false
 color = Color( 0.246094, 0.246094, 0.246094, 1 )
 
 [node name="Navigation" type="Navigation2D" parent="."]
@@ -51,7 +389,9 @@ collision/mask = 1
 occluder/light_mask = 1
 tile_data = IntArray( 131070, 536870914, 131071, 536870914, 65536, 536870914, 65537, 536870914, 65538, 536870914, 65539, 536870914, 65540, 536870914, 65541, 536870914, 65542, 536870914, 196606, 536870914, 196607, 536870912, 131072, 536870912, 131073, 536870912, 131074, 536870912, 131075, 536870912, 131076, 536870912, 131077, 536870912, 131078, 536870914, 262139, 536870914, 262140, 536870913, 262141, 536870913, 262142, 536870913, 262143, 536870912, 196608, 536870912, 196609, 536870914, 196610, 536870912, 196611, 536870913, 196612, 536870912, 196613, 536870912, 196614, 536870914, 196615, 536870913, 196616, 536870914, 327675, 536870914, 327676, 536870912, 327677, 536870912, 327678, 536870912, 327679, 536870912, 262144, 536870912, 262145, 536870914, 262146, 536870912, 262147, 536870912, 262148, 536870912, 262149, 536870913, 262150, 536870913, 262151, 536870912, 262152, 536870914, 393211, 536870914, 393212, 536870912, 393213, 536870914, 393214, 536870914, 393215, 536870912, 327680, 536870912, 327681, 536870913, 327682, 536870912, 327683, 536870912, 327684, 536870912, 327685, 536870912, 327686, 536870912, 327687, 536870912, 327688, 536870914, 458747, 536870914, 458748, 536870912, 458749, 536870914, 458750, 536870914, 458751, 536870914, 393216, 536870912, 393217, 536870912, 393218, 536870912, 393219, 536870912, 393220, 536870913, 393221, 536870914, 393222, 536870912, 393223, 536870912, 393224, 536870914, 524283, 536870914, 524284, 536870912, 524285, 536870913, 524286, 536870914, 524287, 536870914, 458752, 536870914, 458753, 536870912, 458754, 536870912, 458755, 536870912, 458756, 536870912, 458757, 536870914, 458758, 536870912, 458759, 536870912, 458760, 536870914, 589819, 536870914, 589820, 536870912, 589821, 536870912, 589822, 536870913, 589823, 536870913, 524288, 536870913, 524289, 536870913, 524290, 536870913, 524291, 536870913, 524292, 536870913, 524293, 536870913, 524294, 536870912, 524295, 536870912, 524296, 536870914, 655355, 536870914, 655356, 536870912, 655357, 536870912, 655358, 536870912, 655359, 536870912, 589824, 536870912, 589825, 536870912, 589826, 536870912, 589827, 536870912, 589828, 536870912, 589829, 536870912, 589830, 536870912, 589831, 536870912, 589832, 536870914, 720891, 536870913, 720892, 536870913, 720893, 536870913, 720894, 536870913, 720895, 536870913, 655360, 536870913, 655361, 536870913, 655362, 536870913, 655363, 536870913, 655364, 536870913, 655365, 536870913, 655366, 536870913, 655367, 536870913, 655368, 536870913 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
+[node name="Player" type="KinematicBody2D" parent="." groups=[
+"Player",
+]]
 
 transform/pos = Vector2( 192, 416 )
 input/pickable = false
@@ -67,6 +407,33 @@ script/script = ExtResource( 2 )
 
 transform/scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
+
+[node name="HandRight" type="Sprite" parent="Player/Sprite"]
+
+visibility/behind_parent = true
+transform/pos = Vector2( -37.6423, 34.1593 )
+texture = ExtResource( 4 )
+
+[node name="HandLeft" type="Sprite" parent="Player/Sprite"]
+
+visibility/behind_parent = true
+transform/pos = Vector2( 42.3576, 33.2484 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Sprite"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Idle = SubResource( 5 )
+anims/WalkDown = SubResource( 8 )
+anims/WalkLeft = SubResource( 7 )
+anims/WalkRight = SubResource( 6 )
+anims/WalkUp = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
@@ -107,6 +474,7 @@ angular_damp = 1.0
 monitorable = false
 collision/layers = 2
 collision/mask = 2
+script/script = ExtResource( 7 )
 
 [node name="Shape" type="CollisionShape2D" parent="Player/SoundArea"]
 
@@ -117,15 +485,17 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="Player/SoundArea"]
 
 visibility/opacity = 0.0
-transform/scale = Vector2( 0.02, 0.02 )
-texture = ExtResource( 4 )
+visibility/blend_mode = 1
+transform/scale = Vector2( 0.16, 0.16 )
+texture = ExtResource( 8 )
 modulate = Color( 0.500565, 0.770458, 0.949219, 1 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
 
+visibility/visible = false
 enabled = true
 editor_only = false
-texture = ExtResource( 5 )
+texture = ExtResource( 9 )
 offset = Vector2( 0, 0 )
 scale = 4.0
 color = Color( 1, 1, 1, 1 )
@@ -147,6 +517,7 @@ shadow/item_mask = 1
 "Enemy",
 ]]
 
+editor/display_folded = true
 transform/pos = Vector2( -9.15405, 172.096 )
 transform/scale = Vector2( 0.4, 0.4 )
 input/pickable = true
@@ -159,7 +530,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 collision/layers = 2
 collision/mask = 2
-script/script = ExtResource( 6 )
+script/script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 
@@ -171,26 +542,147 @@ _update_shape_index = 0
 [node name="Sprite" type="Sprite" parent="Enemy"]
 
 transform/pos = Vector2( -12.5, -5 )
-transform/scale = Vector2( 1, 1 )
-texture = ExtResource( 7 )
+texture = ExtResource( 11 )
 
 [node name="Exclamation" type="Sprite" parent="Enemy"]
 
 visibility/visible = false
 transform/pos = Vector2( -7.73353, -129.536 )
-texture = ExtResource( 8 )
+texture = ExtResource( 12 )
 
 [node name="Ray" type="RayCast2D" parent="Enemy"]
 
-enabled = false
-cast_to = Vector2( 0, 50 )
+enabled = true
+cast_to = Vector2( 0, 500 )
 layer_mask = 1
-type_mask = 15
+type_mask = 3
+
+[node name="Enemy1" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+editor/display_folded = true
+transform/pos = Vector2( -224, 448 )
+transform/scale = Vector2( 0.4, 0.4 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -12.5, -2.5 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+script/script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1"]
+
+transform/pos = Vector2( -12.5, -2.5 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Enemy1"]
+
+transform/pos = Vector2( -12.5, -5 )
+texture = ExtResource( 11 )
+
+[node name="Exclamation" type="Sprite" parent="Enemy1"]
+
+visibility/visible = false
+transform/pos = Vector2( -7.73353, -129.536 )
+texture = ExtResource( 12 )
+
+[node name="Ray" type="RayCast2D" parent="Enemy1"]
+
+enabled = true
+cast_to = Vector2( 0, 500 )
+layer_mask = 1
+type_mask = 3
+
+[node name="Collectables" type="Node2D" parent="."]
+
+editor/display_folded = true
+
+[node name="Item0" type="Area2D" parent="Collectables" groups=[
+"Collectable",
+]]
+
+transform/pos = Vector2( -188.026, 578.269 )
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="Collectables/Item0"]
+
+texture = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/Item0"]
+
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI"]
+
+visibility/opacity = 0.5
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 896.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 64.0
+
+[node name="CollectedLabel" type="Label" parent="CanvasLayer/UI"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 928.0
+margin/top = 18.0
+margin/right = 1006.0
+margin/bottom = 48.0
+custom_fonts/font = ExtResource( 15 )
+custom_colors/font_color = Color( 0.920776, 1, 0.539062, 1 )
+text = "0 / 10"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="area_enter" from="Player/SoundArea" to="Player" method="_on_SoundArea_area_enter"]
 
 [connection signal="area_enter" from="Enemy" to="Enemy" method="_on_Enemy_area_enter"]
 
 [connection signal="area_exit" from="Enemy" to="Enemy" method="_on_Enemy_area_exit"]
+
+[connection signal="body_enter" from="Collectables/Item0" to="Collectables/Item0" method="_on_Item0_body_enter"]
 
 

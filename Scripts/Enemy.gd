@@ -1,6 +1,6 @@
 extends Area2D
 
-var SPEED = 100
+var SPEED = 160
 var nav  = null setget set_nav
 var goal = Vector2()
 var path = []
@@ -42,7 +42,8 @@ func _fixed_process(delta):
 		ray.set_cast_to(player.get_pos())
 		if ray.is_colliding():
 			var target = ray.get_collider()
-			print(target)
+			if target.is_in_group("Player"):
+				print(target)
 		
 func _on_Enemy_area_enter( area ):
 	in_area = area

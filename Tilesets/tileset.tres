@@ -8,13 +8,13 @@ vertices = Vector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 polygons = [ IntArray( 0, 1, 2, 3, 0 ) ]
 outlines = [ Vector2Array( 0, 0, 0, 64, 64, 64, 64, 0, 0, 0 ) ]
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=2]
 
 closed = true
 cull_mode = 0
 polygon = Vector2Array( -32, -32, 32, -32, 32, 0, -32, 0 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
@@ -45,10 +45,10 @@ polygon = Vector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 64, 0, 64, 64 )
 1/occluder_offset = Vector2( 32, 32 )
-1/occluder = SubResource( 3 )
+1/occluder = SubResource( 2 )
 1/navigation_offset = Vector2( 32, 32 )
 1/shape_offset = Vector2( 32, 32 )
-1/shapes = [ SubResource( 2 ) ]
+1/shapes = [ SubResource( 3 ) ]
 1/one_way_collision_direction = Vector2( 0, 0 )
 1/one_way_collision_max_depth = 0.0
 2/name = "WallSide"
@@ -60,7 +60,7 @@ polygon = Vector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 2/occluder = SubResource( 4 )
 2/navigation_offset = Vector2( 32, 32 )
 2/shape_offset = Vector2( 32, 32 )
-2/shapes = [ SubResource( 2 ) ]
+2/shapes = [ SubResource( 3 ) ]
 2/one_way_collision_direction = Vector2( 0, 0 )
 2/one_way_collision_max_depth = 0.0
 
