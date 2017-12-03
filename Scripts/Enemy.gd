@@ -5,7 +5,7 @@ var nav  = null setget set_nav
 var goal = Vector2()
 var path = []
 var chasing = false
-var in_area = null
+var orientation = Vector2(0,0)
 
 onready var exclamation = get_node("Exclamation")
 onready var ray         = get_node("Ray")
@@ -23,34 +23,48 @@ func update_path():
 func _ready():
 	set_fixed_process(true)
 
+func set_orientation(diff_vec):
+	if diff_vec.x < 0 and orientation.x != -1:
+		orientation.x = -1
+		get_node("Sprite").set_flip_h(true)
+		get_node("Ray").set_cast_to(Vector2(-1500, 0))
+		
+	if diff_vec.x > 0 and orientation.x != 1:
+		orientation.x = 1
+		get_node("Sprite").set_flip_h(false)
+		get_node("Ray").set_cast_to(Vector2(1500, 0))
+
 func _fixed_process(delta):
+	var player_distance = get_pos().distance_to(player.get_pos())
+				
 	if chasing:
 		exclamation.show()
 		if path.size() > 1:
 			var d = get_pos().distance_to(path[0])
 			if d > 2:
-				set_pos(get_pos().linear_interpolate(path[0], SPEED * delta / d))
+				var new_pos = get_pos().linear_interpolate(path[0], SPEED * delta / d)
+				set_orientation(new_pos - get_pos())
+				set_pos(new_pos)
 			else:
 				path.remove(0)
 		else:
 			chasing = false
 			exclamation.hide()
 			
-		var d = get_pos().distance_to(player.get_pos())
-		if d < 50:
+		if player_distance < 50:
 			chasing = false
 			player.busted()		
 	else:
-		ray.set_cast_to(player.get_pos())
-		if ray.is_colliding():
+		if player_distance > 60 and ray.is_colliding():
 			var target = ray.get_collider()
 			if target.is_in_group("Player"):
-				print(target)
+				chasePlayer()
 		
-func _on_Enemy_area_enter( area ):
-	in_area = area
-	print("IN AREA")
-	print(area)
-
-func _on_Enemy_area_exit( area ):
-	in_area = null
+func chasePlayer():
+	if not player.is_busted:
+		get_node("/root/World/SamplePlayer").play("seen")
+		var player_pos = player.get_pos()
+		goal = player.get_pos()
+		nav  = get_node("/root/World/Navigation")
+		update_path()
+		chasing = true

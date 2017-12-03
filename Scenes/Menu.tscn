@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scenes/Menu.gd" type="Script" id=1]
-[ext_resource path="res://Assets/BlogSansBold30.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Assets/white.png" type="Texture" id=2]
+[ext_resource path="res://Assets/BlogSansBold30.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://Assets/enemy.png" type="Texture" id=4]
+[ext_resource path="res://Assets/character.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.6, 0.6, 0.6, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
 
 [node name="Menu" type="Node2D"]
 
@@ -13,6 +29,21 @@ layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
+
+[node name="TextureFrame" type="TextureFrame" parent="CanvasLayer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1061.0
+margin/bottom = 620.0
+texture = ExtResource( 2 )
+modulate = Color( 0.89338, 0.889282, 0.917969, 1 )
+expand = true
+stretch_mode = 0
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 
@@ -31,17 +62,96 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 404.0
-margin/top = 286.0
-margin/right = 564.0
-margin/bottom = 322.0
-custom_fonts/font = ExtResource( 2 )
+margin/left = 364.0
+margin/top = 224.0
+margin/right = 639.0
+margin/bottom = 291.0
+custom_styles/hover = SubResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0.0898438, 0.0543976, 0.0543976, 1 )
+custom_colors/font_color = Color( 0.144531, 0.0897675, 0.0897675, 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Start Game"
-flat = false
+flat = true
+
+[node name="Button1" type="Button" parent="CanvasLayer/UI"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 364.0
+margin/top = 308.0
+margin/right = 639.0
+margin/bottom = 375.0
+custom_styles/hover = SubResource( 1 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color_disabled = Color( 0.0898438, 0.0543976, 0.0543976, 1 )
+custom_colors/font_color = Color( 0.144531, 0.0897675, 0.0897675, 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Quit"
+flat = true
+
+[node name="Label" type="Label" parent="CanvasLayer/UI"]
+
+rect/scale = Vector2( 1.5, 1.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 236.0
+margin/top = 110.0
+margin/right = 582.0
+margin/bottom = 195.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.382812, 0.0119629, 0.0119629, 1 )
+text = "Name of the Game"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label 2" type="Label" parent="CanvasLayer/UI"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 425.0
+margin/top = 450.0
+margin/right = 581.0
+margin/bottom = 464.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Ludum Dare #40 Compo"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TextureFrame 2" type="TextureFrame" parent="CanvasLayer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 59.0
+margin/top = 87.0
+margin/right = 160.0
+margin/bottom = 253.0
+texture = ExtResource( 4 )
+stretch_mode = 0
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+
+transform/pos = Vector2( 936.425, 481.957 )
+texture = ExtResource( 5 )
+flip_h = true
 
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="." method="_on_Button_pressed"]
+
+[connection signal="pressed" from="CanvasLayer/UI/Button1" to="." method="_on_Button1_pressed"]
 
 

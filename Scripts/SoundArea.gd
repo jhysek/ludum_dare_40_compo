@@ -3,6 +3,7 @@ extends Area2D
 var shape
 onready var indicator = get_node("Sprite")
 onready var player    = get_parent()
+onready var sample_player = get_node("/root/World/SamplePlayer")
 
 var noise_radius          = 0
 var noise_indicator_ratio = 0
@@ -11,8 +12,10 @@ var zero_inicator_scale   = 0.16
 var target_noise_radius   = 0
 var making_noise          = false
 var noise_cooldown        = 0
+var step_cooldown         = 1
 var target_indicator_opacity = 0.3
 var indicator_size = 0
+
 
 
 func _ready():
@@ -56,3 +59,9 @@ func _fixed_process(delta):
 	if player.is_moving and noise_cooldown <= 0:
 		noise_cooldown = 3
 		makeNoise(player.walk_noise)
+		
+	step_cooldown -= 5*delta
+	if player.is_moving and step_cooldown <= 0:
+		sample_player.play("step")
+		#sample_player.set_pitch_scale(3,rand_range(0.8, 1.2))
+		step_cooldown = 1.55

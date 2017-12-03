@@ -16,7 +16,13 @@ var collected  = 0
 var noise_level = 0
 
 func _ready():
+	set_process_input(true)
 	set_fixed_process(true)
+	
+func _input(event):
+		if Input.is_action_pressed("ui_accept") and event.pressed:
+			get_node("SoundArea").makeNoise(300)
+			get_node("/root/World/SamplePlayer").play("attention" + str(randi() % 2 + 1))
 
 func setAnimation(velocity, new_velocity):
 	var current_animation = get_node("Sprite/AnimationPlayer").get_current_animation()
@@ -36,13 +42,17 @@ func setAnimation(velocity, new_velocity):
 		
 	if current_animation != new_animation:
 		get_node("Sprite/AnimationPlayer").play(new_animation)
-		
+
 		
 func busted():
 	get_node("Sprite/AnimationPlayer").play("Busted")
 	get_node("SoundArea").makeNoise(500)
+	var sample_player = get_node("/root/World/SamplePlayer")
+	sample_player.stop_all()
+	sample_player.play("busted")
 	get_node("/root/World/CanvasLayer/UI/Busted/AnimationPlayer").play("Show")
 	is_busted = true
+	is_moving = false
 	
 func _fixed_process(delta):
 	var new_velocity = Vector2(0,0)
@@ -60,9 +70,6 @@ func _fixed_process(delta):
 		if Input.is_action_pressed("ui_down"):
 			new_velocity += VEC_DOWN
 		
-		if Input.is_action_pressed("ui_accept"):
-			get_node("SoundArea").makeNoise(100)
-		
 		is_moving = new_velocity != Vector2(0, 0)
 	
 		setAnimation(velocity, new_velocity)
@@ -79,9 +86,11 @@ func _fixed_process(delta):
 
 func _on_SoundArea_area_enter( area ):
 	if area.is_in_group("Enemy"):
+		get_node("/root/World/SamplePlayer").play("heard")
 		area.goal = get_pos()
-		area.nav  = get_node("/root/World/Navigation")
+		area.set_nav(get_node("/root/World/Navigation"))
 		area.chasing = true
+		
 		
 func itemCollected():
 	collected += 1
@@ -90,3 +99,5 @@ func itemCollected():
 	get_node("/root/World/CanvasLayer/UI/NoiseLabel").set_text(str(noise_level))
 	get_node("/root/World/CanvasLayer/UI/CollectedLabel").set_text(str(collected) + " / " + str(10))
 	get_node("SoundArea").makeNoise(200)
+	get_node("/root/World/SamplePlayer").play("chacha" + str(randi() % 3 + 1))
+	
