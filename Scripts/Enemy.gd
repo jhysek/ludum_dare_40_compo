@@ -55,7 +55,7 @@ func _fixed_process(delta):
 			chasing = false
 			exclamation.hide()
 			
-		if player_distance < 50:
+		if player_distance < 60:
 			chasing = false
 			player.busted()		
 	else:

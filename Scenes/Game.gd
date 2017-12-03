@@ -1,16 +1,19 @@
 extends Node2D
 
-var paused = true
-var controls = true
+var paused = false
+var controls = !GameState.control_displayed
 
 func _ready():
-	get_node("CanvasLayer/UI/ControlInfo/AnimationPlayer").play("Show")
+	if controls:
+		get_node("CanvasLayer/UI/ControlInfo/AnimationPlayer").play("Show")
+		paused = true
 	set_process_input(true)
 	
 func _input(event):
 	if controls and event.type == InputEvent.KEY:
 		controls = false
 		paused   = false
+		GameState.control_displayed = true
 		get_node("CanvasLayer/UI/ControlInfo/AnimationPlayer").play_backwards("Show")
 		return
 		

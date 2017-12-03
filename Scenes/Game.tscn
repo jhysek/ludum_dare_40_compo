@@ -1,35 +1,38 @@
-[gd_scene load_steps=46 format=1]
+[gd_scene load_steps=51 format=1]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Assets/enemy.png" type="Texture" id=4]
 [ext_resource path="res://Assets/exclamation.png" type="Texture" id=5]
-[ext_resource path="res://Scripts/Collectable.gd" type="Script" id=6]
-[ext_resource path="res://icon.png" type="Texture" id=7]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=8]
-[ext_resource path="res://Assets/character_busted.png" type="Texture" id=9]
-[ext_resource path="res://Assets/hand.png" type="Texture" id=10]
-[ext_resource path="res://Assets/character_idle.png" type="Texture" id=11]
-[ext_resource path="res://Assets/character.png" type="Texture" id=12]
-[ext_resource path="res://Assets/character_up.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/SoundArea.gd" type="Script" id=14]
-[ext_resource path="res://Assets/noise.png" type="Texture" id=15]
-[ext_resource path="res://Assets/light.png" type="Texture" id=16]
-[ext_resource path="res://Assets/BlogSansBold30.fnt" type="BitmapFont" id=17]
-[ext_resource path="res://Assets/BlogSansBold16.fnt" type="BitmapFont" id=18]
-[ext_resource path="res://Assets/controls.png" type="Texture" id=19]
-[ext_resource path="res://Assets/space.png" type="Texture" id=20]
-[ext_resource path="res://Assets/white.png" type="Texture" id=21]
-[ext_resource path="res://Audio/attention1.wav" type="Sample" id=22]
-[ext_resource path="res://Audio/attention2.wav" type="Sample" id=23]
-[ext_resource path="res://Audio/busted.wav" type="Sample" id=24]
-[ext_resource path="res://Audio/chacha.wav" type="Sample" id=25]
-[ext_resource path="res://Audio/chacha2.wav" type="Sample" id=26]
-[ext_resource path="res://Audio/chacha3.wav" type="Sample" id=27]
-[ext_resource path="res://Audio/heard.wav" type="Sample" id=28]
-[ext_resource path="res://Audio/seen.wav" type="Sample" id=29]
-[ext_resource path="res://Audio/step.wav" type="Sample" id=30]
+[ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Collectable.gd" type="Script" id=7]
+[ext_resource path="res://Assets/coin.png" type="Texture" id=8]
+[ext_resource path="res://Assets/exit.png" type="Texture" id=9]
+[ext_resource path="res://Assets/particle.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=11]
+[ext_resource path="res://Assets/character_busted.png" type="Texture" id=12]
+[ext_resource path="res://Assets/hand.png" type="Texture" id=13]
+[ext_resource path="res://Assets/character_idle.png" type="Texture" id=14]
+[ext_resource path="res://Assets/character.png" type="Texture" id=15]
+[ext_resource path="res://Assets/character_up.png" type="Texture" id=16]
+[ext_resource path="res://Scripts/SoundArea.gd" type="Script" id=17]
+[ext_resource path="res://Assets/noise.png" type="Texture" id=18]
+[ext_resource path="res://Assets/light.png" type="Texture" id=19]
+[ext_resource path="res://Assets/BlogSansBold30.fnt" type="BitmapFont" id=20]
+[ext_resource path="res://Assets/BlogSansBold16.fnt" type="BitmapFont" id=21]
+[ext_resource path="res://Assets/controls.png" type="Texture" id=22]
+[ext_resource path="res://Assets/space.png" type="Texture" id=23]
+[ext_resource path="res://Assets/white.png" type="Texture" id=24]
+[ext_resource path="res://Samples/attention1.smp" type="Sample" id=25]
+[ext_resource path="res://Samples/attention2.smp" type="Sample" id=26]
+[ext_resource path="res://Samples/busted.smp" type="Sample" id=27]
+[ext_resource path="res://Samples/chacha.smp" type="Sample" id=28]
+[ext_resource path="res://Samples/chacha2.smp" type="Sample" id=29]
+[ext_resource path="res://Samples/chacha3.smp" type="Sample" id=30]
+[ext_resource path="res://Samples/heard.smp" type="Sample" id=31]
+[ext_resource path="res://Samples/seen.smp" type="Sample" id=32]
+[ext_resource path="res://Samples/step.smp" type="Sample" id=33]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -39,7 +42,39 @@ radius = 96.7584
 [sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 28.7445
+radius = 16.2026
+
+[sub_resource type="ColorRamp" id=16]
+
+offsets = FloatArray( 0, 1 )
+colors = ColorArray( 0.949219, 0.573216, 0.133484, 1, 1, 0.960938, 0, 1 )
+
+[sub_resource type="Animation" id=17]
+
+resource/name = "Enable"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visibility/opacity")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.2, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/rot")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray(  ),
+"transitions": FloatArray(  ),
+"update": 0,
+"values": [  ]
+}
 
 [sub_resource type="CircleShape2D" id=3]
 
@@ -60,7 +95,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 9 ) ]
+"values": [ ExtResource( 12 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HandRight:transform/pos")
@@ -157,7 +192,7 @@ tracks/4/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 11 ) ]
+"values": [ ExtResource( 14 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("HandLeft:visibility/behind_parent")
@@ -194,7 +229,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 11 ) ]
+"values": [ ExtResource( 14 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HandRight:visibility/behind_parent")
@@ -291,7 +326,7 @@ tracks/4/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 12 ) ]
+"values": [ ExtResource( 15 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("HandRight:visibility/behind_parent")
@@ -347,7 +382,7 @@ tracks/3/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 12 ) ]
+"values": [ ExtResource( 15 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("HandLeft:visibility/behind_parent")
@@ -384,7 +419,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 13 ) ]
+"values": [ ExtResource( 16 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HandRight:transform/pos")
@@ -502,61 +537,61 @@ tracks/0/keys = {
 "values": [ 0.0, 0.8 ]
 }
 
-[sub_resource type="SampleLibrary" id=15]
+[sub_resource type="SampleLibrary" id=18]
 
 samples/attention1 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 22 )
+"sample": ExtResource( 25 )
 }
 samples/attention2 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 23 )
+"sample": ExtResource( 26 )
 }
 samples/busted = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 24 )
-}
-samples/chacha1 = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 25 )
-}
-samples/chacha2 = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 26 )
-}
-samples/chacha3 = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
 "sample": ExtResource( 27 )
 }
-samples/heard = {
+samples/chacha = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 28 )
 }
-samples/seen = {
+samples/chacha2 = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 29 )
 }
-samples/step = {
+samples/chacha3 = {
 "db": 0.0,
-"pitch": 0.57,
+"pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 30 )
+}
+samples/heard = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 31 )
+}
+samples/seen = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 32 )
+}
+samples/step = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 33 )
 }
 
 [node name="World" type="Node2D"]
@@ -588,58 +623,14 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 131070, 536870914, 131071, 536870914, 65536, 536870914, 65537, 536870914, 65538, 536870914, 65539, 536870914, 65540, 536870914, 65541, 536870914, 65542, 536870914, 196606, 536870914, 196607, 536870912, 131072, 536870912, 131073, 536870912, 131074, 536870912, 131075, 536870912, 131076, 536870912, 131077, 536870912, 131078, 536870914, 262139, 536870914, 262140, 536870913, 262141, 536870913, 262142, 536870913, 262143, 536870912, 196608, 536870912, 196609, 536870914, 196610, 536870912, 196611, 536870913, 196612, 536870912, 196613, 536870912, 196614, 536870914, 196615, 536870913, 196616, 536870914, 327675, 536870914, 327676, 536870912, 327677, 536870912, 327678, 536870912, 327679, 536870912, 262144, 536870912, 262145, 536870914, 262146, 536870912, 262147, 536870912, 262148, 536870912, 262149, 536870913, 262150, 536870913, 262151, 536870912, 262152, 536870914, 393211, 536870914, 393212, 536870912, 393213, 536870914, 393214, 536870914, 393215, 536870912, 327680, 536870912, 327681, 536870913, 327682, 536870912, 327683, 536870912, 327684, 536870912, 327685, 536870912, 327686, 536870912, 327687, 536870912, 327688, 536870914, 458747, 536870914, 458748, 536870912, 458749, 536870914, 458750, 536870914, 458751, 536870914, 393216, 536870912, 393217, 536870912, 393218, 536870912, 393219, 536870912, 393220, 536870913, 393221, 536870914, 393222, 536870912, 393223, 536870912, 393224, 536870914, 524283, 536870914, 524284, 536870912, 524285, 536870913, 524286, 536870914, 524287, 536870914, 458752, 536870914, 458753, 536870912, 458754, 536870912, 458755, 536870912, 458756, 536870912, 458757, 536870914, 458758, 536870912, 458759, 536870912, 458760, 536870914, 589819, 536870914, 589820, 536870912, 589821, 536870912, 589822, 536870913, 589823, 536870913, 524288, 536870913, 524289, 536870913, 524290, 536870913, 524291, 536870913, 524292, 536870913, 524293, 536870913, 524294, 536870912, 524295, 536870912, 524296, 536870914, 655355, 536870914, 655356, 536870912, 655357, 536870912, 655358, 536870912, 655359, 536870912, 589824, 536870912, 589825, 536870912, 589826, 536870912, 589827, 0, 589828, 536870912, 589829, 536870912, 589830, 536870912, 589831, 536870912, 589832, 536870914, 720891, 536870913, 720892, 536870913, 720893, 536870913, 720894, 536870913, 720895, 536870913, 655360, 536870913, 655361, 536870913, 655362, 536870913, 655363, 536870913, 655364, 536870913, 655365, 536870913, 655366, 536870913, 655367, 536870913, 655368, 536870913 )
-
-[node name="Enemy" type="Area2D" parent="." groups=[
-"Enemy",
-]]
-
-transform/pos = Vector2( -7.24543, 175.068 )
-transform/rot = 4.26887e-06
-transform/scale = Vector2( 0.4, 0.4 )
-input/pickable = true
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -12.5, -2.5 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-collision/layers = 2
-collision/mask = 2
-script/script = ExtResource( 3 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-
-transform/pos = Vector2( -12.5, -2.5 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
-
-[node name="Sprite" type="Sprite" parent="Enemy"]
-
-transform/pos = Vector2( -2.55645, 2.32297 )
-texture = ExtResource( 4 )
-offset = Vector2( 2.01328, -49.1718 )
-
-[node name="Exclamation" type="Sprite" parent="Enemy"]
-
-visibility/visible = false
-transform/pos = Vector2( 1.44555, -169.694 )
-texture = ExtResource( 5 )
-
-[node name="Ray" type="RayCast2D" parent="Enemy"]
-
-enabled = true
-cast_to = Vector2( 1500, 0 )
-layer_mask = 1
-type_mask = 19
+tile_data = IntArray( -196600, 2, -196599, 1, -196598, 1, -196597, 1, -196596, 1, -196595, 1, -196594, 1, -196593, 2, -196592, 1, -196591, 1, -196590, 2, -131064, 2, -131063, 0, -131062, 0, -131061, 0, -131060, 0, -131059, 0, -131058, 0, -131057, 2, -131056, 0, -131055, 0, -131054, 2, -65528, 2, -65527, 0, -65526, 1, -65525, 1, -65524, 1, -65523, 1, -65522, 1, -65521, 2, -65520, 0, -65519, 1, -65518, 2, 8, 2, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 15, 2, 16, 0, 17, 0, 18, 2, 131064, 2, 131065, 1, 131066, 1, 131067, 1, 131068, 1, 131069, 1, 131070, 1, 131071, 1, 65536, 1, 65537, 1, 65538, 1, 65539, 1, 65540, 1, 65541, 1, 65542, 1, 65543, 1, 65544, 1, 65545, 1, 65546, 1, 65547, 1, 65548, 1, 65549, 1, 65550, 0, 65551, 1, 65552, 1, 65553, 0, 65554, 2, 196600, 2, 196601, 0, 196602, 0, 196603, 0, 196604, 0, 196605, 0, 196606, 0, 196607, 0, 131072, 0, 131073, 0, 131074, 0, 131075, 0, 131076, 0, 131077, 0, 131078, 0, 131079, 0, 131080, 0, 131081, 0, 131082, 0, 131083, 0, 131084, 0, 131085, 0, 131086, 0, 131087, 0, 131088, 0, 131089, 0, 131090, 2, 262136, 2, 262137, 0, 262138, 0, 262139, 2, 262140, 1, 262141, 0, 262142, 2, 262143, 1, 196608, 1, 196609, 2, 196610, 1, 196611, 0, 196612, 1, 196613, 2, 196614, 0, 196615, 0, 196616, 2, 196617, 0, 196618, 0, 196619, 0, 196620, 0, 196621, 0, 196622, 0, 196623, 0, 196624, 0, 196625, 0, 196626, 2, 327672, 1, 327673, 1, 327674, 1, 327675, 536870914, 327676, 0, 327677, 536870912, 327678, 2, 327679, 0, 262144, 0, 262145, 2, 262146, 536870912, 262147, 536870912, 262148, 536870912, 262149, 2, 262150, 0, 262151, 536870912, 262152, 2, 262153, 1, 262154, 0, 262155, 1, 262156, 1, 262157, 1, 262158, 1, 262159, 1, 262160, 1, 262161, 0, 262162, 2, 393211, 536870914, 393212, 536870912, 393213, 0, 393214, 2, 393215, 536870912, 327680, 536870912, 327681, 1, 327682, 536870912, 327683, 536870912, 327684, 536870912, 327685, 2, 327686, 0, 327687, 536870912, 327688, 536870914, 327689, 0, 327690, 0, 327691, 0, 327692, 0, 327693, 0, 327694, 0, 327695, 0, 327696, 0, 327697, 0, 327698, 2, 458747, 536870914, 458748, 536870912, 458749, 0, 458750, 2, 458751, 0, 393216, 536870912, 393217, 0, 393218, 536870912, 393219, 536870912, 393220, 0, 393221, 2, 393222, 536870912, 393223, 536870912, 393224, 536870914, 393225, 0, 393226, 0, 393227, 2, 393228, 2, 393229, 0, 393230, 0, 393231, 2, 393232, 0, 393233, 0, 393234, 2, 524283, 536870914, 524284, 536870912, 524285, 0, 524286, 1, 524287, 1, 458752, 0, 458753, 1, 458754, 1, 458755, 1, 458756, 1, 458757, 1, 458758, 536870912, 458759, 536870912, 458760, 536870914, 458761, 0, 458762, 0, 458763, 2, 458764, 2, 458765, 0, 458766, 0, 458767, 2, 458768, 1, 458769, 1, 458770, 1, 589819, 536870914, 589820, 536870912, 589821, 0, 589822, 0, 589823, 0, 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 536870912, 524295, 536870912, 524296, 536870914, 524297, 0, 524298, 0, 524299, 1, 524300, 1, 524301, 0, 524302, 0, 524303, 2, 524304, 0, 524305, 0, 524306, 0, 655355, 536870914, 655356, 536870912, 655357, 536870912, 655358, 536870912, 655359, 0, 589824, 0, 589825, 536870912, 589826, 0, 589827, 0, 589828, 536870912, 589829, 0, 589830, 536870912, 589831, 536870912, 589832, 536870914, 589833, 0, 589834, 0, 589835, 0, 589836, 0, 589837, 0, 589838, 0, 589839, 2, 589840, 0, 589841, 0, 589842, 0, 720891, 2, 720892, 536870913, 720893, 536870913, 720894, 536870913, 720895, 536870913, 655360, 536870913, 655361, 536870913, 655362, 536870913, 655363, 536870913, 655364, 536870913, 655365, 536870913, 655366, 536870913, 655367, 536870913, 655368, 1, 655369, 1, 655370, 1, 655371, 0, 655372, 0, 655373, 1, 655374, 1, 655375, 2, 655376, 0, 655377, 0, 655378, 0, 786427, 2, 786428, 0, 786429, 0, 786430, 0, 786431, 0, 720896, 0, 720897, 0, 720898, 0, 720899, 0, 720900, 0, 720901, 0, 720902, 0, 720903, 0, 720904, 0, 720905, 0, 720906, 0, 720907, 0, 720908, 0, 720909, 0, 720910, 0, 720911, 2, 851963, 2, 851964, 0, 851965, 0, 851966, 0, 851967, 0, 786432, 0, 786433, 0, 786434, 0, 786435, 0, 786436, 0, 786437, 0, 786438, 0, 786439, 0, 786440, 2, 786441, 0, 786442, 0, 786443, 0, 786444, 2, 786445, 0, 786446, 0, 786447, 2, 917499, 2, 917500, 1, 917501, 1, 917502, 0, 917503, 1, 851968, 2, 851969, 1, 851970, 0, 851971, 1, 851972, 2, 851973, 1, 851974, 0, 851975, 1, 851976, 2, 851977, 0, 851978, 0, 851979, 0, 851980, 2, 851981, 0, 851982, 0, 851983, 2, 983035, 2, 983036, 0, 983037, 0, 983038, 0, 983039, 0, 917504, 2, 917505, 0, 917506, 0, 917507, 0, 917508, 2, 917509, 0, 917510, 0, 917511, 0, 917512, 2, 917513, 0, 917514, 0, 917515, 0, 917516, 2, 917517, 0, 917518, 0, 917519, 2, 1048571, 2, 1048572, 0, 1048573, 0, 1048574, 0, 1048575, 0, 983040, 2, 983041, 0, 983042, 0, 983043, 0, 983044, 2, 983045, 0, 983046, 0, 983047, 0, 983048, 1, 983049, 0, 983050, 0, 983051, 0, 983052, 1, 983053, 0, 983054, 0, 983055, 2, 1114107, 2, 1114108, 0, 1114109, 0, 1114110, 0, 1114111, 0, 1048576, 2, 1048577, 0, 1048578, 0, 1048579, 0, 1048580, 2, 1048581, 0, 1048582, 0, 1048583, 0, 1048584, 0, 1048585, 0, 1048586, 0, 1048587, 0, 1048588, 0, 1048589, 0, 1048590, 0, 1048591, 2, 1179643, 1, 1179644, 1, 1179645, 1, 1179646, 1, 1179647, 1, 1114112, 1, 1114113, 1, 1114114, 1, 1114115, 1, 1114116, 1, 1114117, 1, 1114118, 1, 1114119, 1, 1114120, 1, 1114121, 1, 1114122, 1, 1114123, 1, 1114124, 1, 1114125, 1, 1114126, 1, 1114127, 1 )
 
 [node name="Enemy1" type="Area2D" parent="." groups=[
 "Enemy",
 ]]
 
-transform/pos = Vector2( -224, 448 )
+editor/display_folded = true
+transform/pos = Vector2( -186.834, 356.178 )
 transform/scale = Vector2( 0.4, 0.4 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -678,68 +669,220 @@ cast_to = Vector2( 1500, 0 )
 layer_mask = 1
 type_mask = 3
 
+[node name="Enemy3" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+editor/display_folded = true
+transform/pos = Vector2( 169.301, 554.674 )
+transform/scale = Vector2( 0.4, 0.4 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -12.5, -2.5 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy3"]
+
+transform/pos = Vector2( -12.5, -2.5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Enemy3"]
+
+transform/pos = Vector2( -12.5, -5 )
+texture = ExtResource( 4 )
+
+[node name="Exclamation" type="Sprite" parent="Enemy3"]
+
+visibility/visible = false
+transform/pos = Vector2( -7.73353, -129.536 )
+texture = ExtResource( 5 )
+
+[node name="Ray" type="RayCast2D" parent="Enemy3"]
+
+enabled = true
+cast_to = Vector2( 1500, 0 )
+layer_mask = 1
+type_mask = 3
+
+[node name="Enemy4" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+editor/display_folded = true
+transform/pos = Vector2( 1062.88, -105.907 )
+transform/scale = Vector2( 0.4, 0.4 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -12.5, -2.5 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy4"]
+
+transform/pos = Vector2( -12.5, -2.5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Enemy4"]
+
+transform/pos = Vector2( -12.5, -5 )
+texture = ExtResource( 4 )
+
+[node name="Exclamation" type="Sprite" parent="Enemy4"]
+
+visibility/visible = false
+transform/pos = Vector2( -7.73353, -129.536 )
+texture = ExtResource( 5 )
+
+[node name="Ray" type="RayCast2D" parent="Enemy4"]
+
+enabled = true
+cast_to = Vector2( 1500, 0 )
+layer_mask = 1
+type_mask = 3
+
+[node name="Enemy5" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+editor/display_folded = true
+transform/pos = Vector2( 165.882, 729.996 )
+transform/scale = Vector2( 0.4, 0.4 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -12.5, -2.5 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy5"]
+
+transform/pos = Vector2( -12.5, -2.5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Enemy5"]
+
+transform/pos = Vector2( -12.5, -5 )
+texture = ExtResource( 4 )
+
+[node name="Exclamation" type="Sprite" parent="Enemy5"]
+
+visibility/visible = false
+transform/pos = Vector2( -7.73353, -129.536 )
+texture = ExtResource( 5 )
+
+[node name="Ray" type="RayCast2D" parent="Enemy5"]
+
+enabled = true
+cast_to = Vector2( 1500, 0 )
+layer_mask = 1
+type_mask = 3
+
+[node name="Enemy6" type="Area2D" parent="." groups=[
+"Enemy",
+]]
+
+editor/display_folded = true
+transform/pos = Vector2( 161.799, 950.496 )
+transform/scale = Vector2( 0.4, 0.4 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -12.5, -2.5 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision/layers = 2
+collision/mask = 2
+script/script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy6"]
+
+transform/pos = Vector2( -12.5, -2.5 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Sprite" type="Sprite" parent="Enemy6"]
+
+transform/pos = Vector2( -12.5, -5 )
+texture = ExtResource( 4 )
+
+[node name="Exclamation" type="Sprite" parent="Enemy6"]
+
+visibility/visible = false
+transform/pos = Vector2( -7.73353, -129.536 )
+texture = ExtResource( 5 )
+
+[node name="Ray" type="RayCast2D" parent="Enemy6"]
+
+enabled = true
+cast_to = Vector2( 1500, 0 )
+layer_mask = 1
+type_mask = 3
+
 [node name="Collectables" type="Node2D" parent="."]
 
 editor/display_folded = true
 
-[node name="Item0" type="Area2D" parent="Collectables" groups=[
-"Collectable",
-]]
+[node name="Item0" parent="Collectables" instance=ExtResource( 6 )]
 
-editor/display_folded = true
-transform/pos = Vector2( -188.026, 578.269 )
-input/pickable = true
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = ExtResource( 6 )
+transform/pos = Vector2( -196.771, 460.213 )
 
-[node name="Sprite" type="Sprite" parent="Collectables/Item0"]
+[node name="Item5" parent="Collectables" instance=ExtResource( 6 )]
 
-texture = ExtResource( 7 )
+transform/pos = Vector2( 1121.12, -98.9709 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/Item0"]
+[node name="Item1" parent="Collectables" instance=ExtResource( 6 )]
 
-shape = SubResource( 2 )
-trigger = false
-_update_shape_index = 0
+transform/pos = Vector2( 925.278, -101.763 )
 
-[node name="Item1" type="Area2D" parent="Collectables" groups=[
-"Collectable",
-]]
+[node name="Item3" parent="Collectables" instance=ExtResource( 6 )]
 
-editor/display_folded = true
-transform/pos = Vector2( 463.866, 371.17 )
-input/pickable = true
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = ExtResource( 6 )
+transform/pos = Vector2( -3.1801, 304.596 )
 
-[node name="Sprite" type="Sprite" parent="Collectables/Item1"]
+[node name="Item4" parent="Collectables" instance=ExtResource( 6 )]
 
-texture = ExtResource( 7 )
+transform/pos = Vector2( 230.746, 348.32 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/Item1"]
+[node name="Item6" parent="Collectables" instance=ExtResource( 6 )]
 
-shape = SubResource( 2 )
-trigger = false
-_update_shape_index = 0
+transform/pos = Vector2( -187.797, 762.78 )
+
+[node name="Item7" parent="Collectables" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 157.246, 1028.2 )
 
 [node name="Item2" type="Area2D" parent="Collectables" groups=[
 "Collectable",
 ]]
 
 editor/display_folded = true
-transform/pos = Vector2( 443.22, 580.215 )
+transform/pos = Vector2( 445.406, 547.421 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -748,11 +891,11 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 6 )
+script/script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="Collectables/Item2"]
 
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/Item2"]
 
@@ -760,12 +903,68 @@ shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
+[node name="Exit" type="Area2D" parent="."]
+
+editor/display_folded = true
+visibility/opacity = 0.2
+transform/pos = Vector2( -139.138, 995.37 )
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="Sprite" type="Sprite" parent="Exit"]
+
+visibility/opacity = 0.9
+visibility/blend_mode = 1
+texture = ExtResource( 9 )
+
+[node name="Particles2D" type="Particles2D" parent="Exit"]
+
+visibility/visible = false
+visibility/blend_mode = 1
+transform/pos = Vector2( -6.47916, 0.71991 )
+config/amount = 64
+config/lifetime = 2.0
+config/process_mode = 1
+config/explosiveness = 0.67
+config/texture = ExtResource( 10 )
+params/direction = 0.0
+params/spread = 100.0
+params/linear_velocity = 100.0
+params/spin_velocity = 5.0
+params/orbit_velocity = 5.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 0.3
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+color/color_ramp = SubResource( 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Exit"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Enable = SubResource( 17 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
 [node name="Player" type="KinematicBody2D" parent="." groups=[
 "Player",
 ]]
 
 editor/display_folded = true
-transform/pos = Vector2( 192, 416 )
+transform/pos = Vector2( -376.419, 186.446 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0.989624, 14.8445 )
@@ -773,23 +972,23 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 8 )
+script/script = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
 editor/display_folded = true
 transform/scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 9 )
+texture = ExtResource( 12 )
 
 [node name="HandRight" type="Sprite" parent="Player/Sprite"]
 
 transform/pos = Vector2( -37.6423, 34.1593 )
-texture = ExtResource( 10 )
+texture = ExtResource( 13 )
 
 [node name="HandLeft" type="Sprite" parent="Player/Sprite"]
 
 transform/pos = Vector2( 42.3576, 33.2484 )
-texture = ExtResource( 10 )
+texture = ExtResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Sprite"]
 
@@ -846,7 +1045,7 @@ angular_damp = 1.0
 monitorable = false
 collision/layers = 2
 collision/mask = 2
-script/script = ExtResource( 14 )
+script/script = ExtResource( 17 )
 
 [node name="Shape" type="CollisionShape2D" parent="Player/SoundArea"]
 
@@ -859,7 +1058,7 @@ _update_shape_index = 0
 visibility/opacity = 0.0
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.16, 0.16 )
-texture = ExtResource( 15 )
+texture = ExtResource( 18 )
 modulate = Color( 0.500565, 0.770458, 0.949219, 1 )
 
 [node name="Light2D" type="Light2D" parent="Player"]
@@ -867,7 +1066,7 @@ modulate = Color( 0.500565, 0.770458, 0.949219, 1 )
 visibility/visible = false
 enabled = true
 editor_only = false
-texture = ExtResource( 16 )
+texture = ExtResource( 19 )
 offset = Vector2( 0, 0 )
 scale = 4.0
 color = Color( 1, 1, 1, 1 )
@@ -938,7 +1137,7 @@ margin/left = 923.0
 margin/top = 8.0
 margin/right = 1001.0
 margin/bottom = 38.0
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color = Color( 0.920776, 1, 0.539062, 1 )
 text = "0 / 10"
 percent_visible = 1.0
@@ -956,7 +1155,7 @@ margin/left = 136.0
 margin/top = 8.0
 margin/right = 184.0
 margin/bottom = 38.0
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color = Color( 0.920776, 1, 0.539062, 1 )
 text = "0"
 percent_visible = 1.0
@@ -974,7 +1173,7 @@ margin/left = 9.0
 margin/top = 6.0
 margin/right = 164.0
 margin/bottom = 36.0
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color = Color( 0.752388, 0.753906, 0.745071, 1 )
 text = "noise level: "
 percent_visible = 1.0
@@ -983,7 +1182,6 @@ max_lines_visible = -1
 
 [node name="Busted" type="Panel" parent="CanvasLayer/UI"]
 
-editor/display_folded = true
 visibility/opacity = 0.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -1001,11 +1199,11 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 143.0
-margin/top = 24.0
-margin/right = 239.0
-margin/bottom = 54.0
-custom_fonts/font = ExtResource( 17 )
+margin/left = 144.0
+margin/top = 35.0
+margin/right = 240.0
+margin/bottom = 65.0
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color = Color( 0.699219, 0, 0, 1 )
 text = "Busted!"
 percent_visible = 1.0
@@ -1030,11 +1228,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 82.0
-margin/top = 84.0
+margin/top = 112.0
 margin/right = 308.0
-margin/bottom = 133.0
+margin/bottom = 161.0
 custom_styles/hover = SubResource( 13 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color_disabled = Color( 0.0429688, 0.0429688, 0.0429688, 1 )
 custom_colors/font_color = Color( 0.171875, 0.171875, 0.171875, 1 )
 toggle_mode = false
@@ -1050,11 +1248,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 82.0
-margin/top = 144.0
+margin/top = 170.0
 margin/right = 308.0
-margin/bottom = 193.0
+margin/bottom = 219.0
 custom_styles/hover = SubResource( 13 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color_disabled = Color( 0.0429688, 0.0429688, 0.0429688, 1 )
 custom_colors/font_color = Color( 0.415802, 0.488281, 0.423729, 1 )
 toggle_mode = false
@@ -1084,7 +1282,7 @@ size_flags/vertical = 2
 margin/left = 324.0
 margin/top = 188.0
 margin/right = 709.0
-margin/bottom = 415.0
+margin/bottom = 470.0
 custom_styles/panel = SubResource( 11 )
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/ControlInfo"]
@@ -1098,7 +1296,7 @@ margin/left = 151.0
 margin/top = 24.0
 margin/right = 258.0
 margin/bottom = 54.0
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color = Color( 0.699219, 0, 0, 1 )
 text = "Controls"
 percent_visible = 1.0
@@ -1122,12 +1320,12 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 111.0
-margin/top = 192.0
-margin/right = 291.0
-margin/bottom = 209.0
-custom_fonts/font = ExtResource( 18 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+margin/left = 100.0
+margin/top = 256.0
+margin/right = 280.0
+margin/bottom = 273.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0.339844, 0.339844, 0.339844, 1 )
 text = "press any key to continue"
 percent_visible = 1.0
 lines_skipped = 0
@@ -1143,9 +1341,29 @@ margin/left = 139.0
 margin/top = 92.0
 margin/right = 319.0
 margin/bottom = 109.0
-custom_fonts/font = ExtResource( 18 )
+custom_fonts/font = ExtResource( 21 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "player movement"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Instructions" type="Label" parent="CanvasLayer/UI/ControlInfo"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 173.0
+margin/right = 363.0
+margin/bottom = 245.0
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Collect all items and get out. Avoid guards.
+More items you carry, more noisy your walk is and there is better chance they can hear you!"
+align = 1
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -1160,7 +1378,7 @@ margin/left = 137.0
 margin/top = 128.0
 margin/right = 317.0
 margin/bottom = 145.0
-custom_fonts/font = ExtResource( 18 )
+custom_fonts/font = ExtResource( 21 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "make noise"
 percent_visible = 1.0
@@ -1170,13 +1388,13 @@ max_lines_visible = -1
 [node name="Sprite" type="Sprite" parent="CanvasLayer/UI/ControlInfo"]
 
 transform/pos = Vector2( 91.2102, 90.2079 )
-texture = ExtResource( 19 )
+texture = ExtResource( 22 )
 modulate = Color( 0.658997, 0.921875, 0.681588, 1 )
 
 [node name="Sprite 2" type="Sprite" parent="CanvasLayer/UI/ControlInfo"]
 
 transform/pos = Vector2( 91.2102, 136.314 )
-texture = ExtResource( 20 )
+texture = ExtResource( 23 )
 modulate = Color( 0.953125, 0.740906, 0.740906, 1 )
 
 [node name="TextureFrame" type="TextureFrame" parent="CanvasLayer/UI/ControlInfo"]
@@ -1191,7 +1409,7 @@ margin/left = -323.0
 margin/top = -189.0
 margin/right = 703.0
 margin/bottom = 431.0
-texture = ExtResource( 21 )
+texture = ExtResource( 24 )
 modulate = Color( 0, 0, 0, 1 )
 expand = true
 stretch_mode = 0
@@ -1221,7 +1439,7 @@ margin/left = 146.824
 margin/top = 25.5294
 margin/right = 242.824
 margin/bottom = 55.5294
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Paused"
 percent_visible = 1.0
@@ -1250,7 +1468,7 @@ margin/top = 84.0
 margin/right = 308.0
 margin/bottom = 133.0
 custom_styles/hover = SubResource( 13 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color_disabled = Color( 0.0429688, 0.0429688, 0.0429688, 1 )
 custom_colors/font_color = Color( 0.171875, 0.171875, 0.171875, 1 )
 toggle_mode = false
@@ -1270,7 +1488,7 @@ margin/top = 144.0
 margin/right = 308.0
 margin/bottom = 193.0
 custom_styles/hover = SubResource( 13 )
-custom_fonts/font = ExtResource( 17 )
+custom_fonts/font = ExtResource( 20 )
 custom_colors/font_color_disabled = Color( 0.0429688, 0.0429688, 0.0429688, 1 )
 custom_colors/font_color = Color( 0.203125, 0.0253906, 0.0253906, 1 )
 toggle_mode = false
@@ -1293,7 +1511,7 @@ autoplay = ""
 [node name="SamplePlayer" type="SamplePlayer" parent="."]
 
 config/polyphony = 3
-config/samples = SubResource( 15 )
+config/samples = SubResource( 18 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -1306,10 +1524,6 @@ default/filter/gain = 1.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
-
-[connection signal="body_enter" from="Collectables/Item0" to="Collectables/Item0" method="_on_item_body_enter"]
-
-[connection signal="body_enter" from="Collectables/Item1" to="Collectables/Item1" method="_on_item_body_enter"]
 
 [connection signal="body_enter" from="Collectables/Item2" to="Collectables/Item2" method="_on_item_body_enter"]
 

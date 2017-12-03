@@ -8,11 +8,11 @@ var VEC_UP = Vector2(0, -1)
 var VEC_DOWN = Vector2(0, 1)
 var SPEED = 200
 
-var velocity = Vector2(0,0)
-var is_moving = false
-var walk_noise = 80
-var is_busted  = false
-var collected  = 0
+var velocity    = Vector2(0,0)
+var is_moving   = false
+var walk_noise  = 80
+var is_busted   = false
+var collected   = 0
 var noise_level = 0
 
 onready var world = get_node("/root/World")
@@ -101,6 +101,6 @@ func itemCollected():
 	walk_noise = 50 + noise_level * 30
 	get_node("/root/World/CanvasLayer/UI/NoiseLabel").set_text(str(noise_level))
 	get_node("/root/World/CanvasLayer/UI/CollectedLabel").set_text(str(collected) + " / " + str(10))
-	get_node("SoundArea").makeNoise(200)
+	get_node("SoundArea").makeNoise(150)
 	get_node("/root/World/SamplePlayer").play("chacha" + str(randi() % 3 + 1))
 	
