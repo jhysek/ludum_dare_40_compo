@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://Samples/attention1.smp" type="Sample" id=1]
+[ext_resource path="res://Samples/attention2.smp" type="Sample" id=2]
+[ext_resource path="res://Samples/busted.smp" type="Sample" id=3]
+[ext_resource path="res://Samples/chacha.smp" type="Sample" id=4]
+[ext_resource path="res://Samples/chacha2.smp" type="Sample" id=5]
+[ext_resource path="res://Samples/chacha3.smp" type="Sample" id=6]
+[ext_resource path="res://Samples/heard.smp" type="Sample" id=7]
+[ext_resource path="res://Samples/seen.smp" type="Sample" id=8]
+[ext_resource path="res://Samples/step.smp" type="Sample" id=9]
+
+[sub_resource type="SampleLibrary" id=18]
+
+samples/attention1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 1 )
+}
+samples/attention2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 2 )
+}
+samples/busted = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
+samples/chacha1 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 4 )
+}
+samples/chacha2 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/chacha3 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/heard = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+samples/seen = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+samples/step = {
+"db": -20.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+
+[node name="SamplePlayer" type="SamplePlayer"]
+
+config/polyphony = 3
+config/samples = SubResource( 18 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+

@@ -61,7 +61,7 @@ func _fixed_process(delta):
 	else:
 		if player_distance > 60 and ray.is_colliding():
 			var target = ray.get_collider()
-			if target.is_in_group("Player"):
+			if target and target.is_in_group("Player"):
 				chasePlayer()
 		
 func chasePlayer():

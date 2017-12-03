@@ -4,6 +4,7 @@ var shape
 onready var indicator = get_node("Sprite")
 onready var player    = get_parent()
 onready var sample_player = get_node("/root/World/SamplePlayer")
+onready var world     = get_node("/root/World")
 
 var noise_radius          = 0
 var noise_indicator_ratio = 0
@@ -32,6 +33,9 @@ func makeNoise(radius):
 	making_noise = true
 
 func _fixed_process(delta):
+	if world.paused:
+		return
+		
 	if making_noise:	
 		var indicator_opacity = lerp(indicator.get_opacity(), target_indicator_opacity, 0.05)
 		indicator.set_opacity(indicator_opacity)
@@ -62,6 +66,6 @@ func _fixed_process(delta):
 		
 	step_cooldown -= 5*delta
 	if player.is_moving and step_cooldown <= 0:
-		# sample_player.play("step")
+		sample_player.play("step")
 		#sample_player.set_pitch_scale(3,rand_range(0.8, 1.2))
 		step_cooldown = 1.55
