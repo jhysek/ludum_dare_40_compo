@@ -62,6 +62,6 @@ func _fixed_process(delta):
 		
 	step_cooldown -= 5*delta
 	if player.is_moving and step_cooldown <= 0:
-		sample_player.play("step")
+		# sample_player.play("step")
 		#sample_player.set_pitch_scale(3,rand_range(0.8, 1.2))
 		step_cooldown = 1.55

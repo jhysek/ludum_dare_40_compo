@@ -100,7 +100,8 @@ func itemCollected():
 	noise_level += 1
 	walk_noise = 50 + noise_level * 30
 	get_node("/root/World/CanvasLayer/UI/NoiseLabel").set_text(str(noise_level))
-	get_node("/root/World/CanvasLayer/UI/CollectedLabel").set_text(str(collected) + " / " + str(10))
+	get_node("/root/World/CanvasLayer/UI/CollectedLabel").set_text(str(collected) + " / " + str(world.total_collectables))
 	get_node("SoundArea").makeNoise(150)
 	get_node("/root/World/SamplePlayer").play("chacha" + str(randi() % 3 + 1))
-	
+	if collected == world.total_collectables:
+		get_node("/root/World/Exit").activate()
