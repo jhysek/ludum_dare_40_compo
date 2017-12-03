@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Scenes/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/white.png" type="Texture" id=2]
 [ext_resource path="res://Assets/BlogSansBold30.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://Assets/enemy.png" type="Texture" id=4]
-[ext_resource path="res://Assets/character.png" type="Texture" id=5]
+[ext_resource path="res://Assets/BlogSansBold16.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://Assets/enemy.png" type="Texture" id=5]
+[ext_resource path="res://Assets/character.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -82,10 +83,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 364.0
-margin/top = 308.0
-margin/right = 639.0
-margin/bottom = 375.0
+margin/left = 363.0
+margin/top = 295.0
+margin/right = 638.0
+margin/bottom = 362.0
 custom_styles/hover = SubResource( 1 )
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color_disabled = Color( 0.0898438, 0.0543976, 0.0543976, 1 )
@@ -103,13 +104,13 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 236.0
-margin/top = 110.0
-margin/right = 582.0
-margin/bottom = 195.0
+margin/left = 237.0
+margin/top = 120.0
+margin/right = 583.0
+margin/bottom = 165.0
 custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.382812, 0.0119629, 0.0119629, 1 )
-text = "Name of the Game"
+text = "I'm not here"
 align = 1
 percent_visible = 1.0
 lines_skipped = 0
@@ -121,12 +122,48 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 425.0
-margin/top = 450.0
-margin/right = 581.0
-margin/bottom = 464.0
+margin/left = 298.0
+margin/top = 497.0
+margin/right = 716.0
+margin/bottom = 511.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Ludum Dare #40 Compo"
+text = "Jiri Hysek | jiri.hysek@gmail.com"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label3" type="Label" parent="CanvasLayer/UI"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 290.0
+margin/top = 446.0
+margin/right = 708.0
+margin/bottom = 463.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Ludum Dare #40 "
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label4" type="Label" parent="CanvasLayer/UI"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 281.0
+margin/top = 473.0
+margin/right = 699.0
+margin/bottom = 487.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Compo entry - made in 48 hours from scratch"
+align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -141,13 +178,13 @@ margin/left = 59.0
 margin/top = 87.0
 margin/right = 160.0
 margin/bottom = 253.0
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 stretch_mode = 0
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer"]
 
 transform/pos = Vector2( 936.425, 481.957 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 flip_h = true
 
 [connection signal="pressed" from="CanvasLayer/UI/Button" to="." method="_on_Button_pressed"]

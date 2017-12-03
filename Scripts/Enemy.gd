@@ -10,6 +10,7 @@ var orientation = Vector2(0,0)
 onready var exclamation = get_node("Exclamation")
 onready var ray         = get_node("Ray")
 onready var player      = get_node("/root/World/Player")
+onready var world       = get_node("/root/World")
 
 func set_nav(new_nav):
 	nav = new_nav
@@ -36,7 +37,10 @@ func set_orientation(diff_vec):
 
 func _fixed_process(delta):
 	var player_distance = get_pos().distance_to(player.get_pos())
-				
+	
+	if world.paused:
+		return 
+		 			
 	if chasing:
 		exclamation.show()
 		if path.size() > 1:

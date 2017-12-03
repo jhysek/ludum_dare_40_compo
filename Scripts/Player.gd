@@ -15,11 +15,14 @@ var is_busted  = false
 var collected  = 0
 var noise_level = 0
 
+onready var world = get_node("/root/World")
+
 func _ready():
 	set_process_input(true)
 	set_fixed_process(true)
 	
 func _input(event):
+	if !world.paused:
 		if Input.is_action_pressed("ui_accept") and event.pressed:
 			get_node("SoundArea").makeNoise(300)
 			get_node("/root/World/SamplePlayer").play("attention" + str(randi() % 2 + 1))
@@ -57,7 +60,7 @@ func busted():
 func _fixed_process(delta):
 	var new_velocity = Vector2(0,0)
 		
-	if !is_busted:
+	if !world.paused and !is_busted:
 		if Input.is_action_pressed("ui_left"):
 			new_velocity += VEC_LEFT
 		
