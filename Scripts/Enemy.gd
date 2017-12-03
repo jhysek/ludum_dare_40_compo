@@ -35,9 +35,11 @@ func _fixed_process(delta):
 		else:
 			chasing = false
 			exclamation.hide()
-			print("GOTCHA")
-			if in_area:
-				print("STILL IN AREA")
+			
+		var d = get_pos().distance_to(player.get_pos())
+		if d < 50:
+			chasing = false
+			player.busted()		
 	else:
 		ray.set_cast_to(player.get_pos())
 		if ray.is_colliding():
