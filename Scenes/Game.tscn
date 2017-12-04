@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=1]
+[gd_scene load_steps=28 format=1]
 
 [ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/tileset.tres" type="TileSet" id=2]
@@ -6,36 +6,30 @@
 [ext_resource path="res://Assets/enemy.png" type="Texture" id=4]
 [ext_resource path="res://Assets/exclamation.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Coin.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/Collectable.gd" type="Script" id=7]
-[ext_resource path="res://Assets/coin.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Exit.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=10]
-[ext_resource path="res://Assets/character_busted.png" type="Texture" id=11]
-[ext_resource path="res://Assets/hand.png" type="Texture" id=12]
-[ext_resource path="res://Assets/character_idle.png" type="Texture" id=13]
-[ext_resource path="res://Assets/character.png" type="Texture" id=14]
-[ext_resource path="res://Assets/character_up.png" type="Texture" id=15]
-[ext_resource path="res://Scripts/SoundArea.gd" type="Script" id=16]
-[ext_resource path="res://Assets/noise.png" type="Texture" id=17]
-[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Scenes/SamplePlayer.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Scenes/Exit.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=8]
+[ext_resource path="res://Assets/character_busted.png" type="Texture" id=9]
+[ext_resource path="res://Assets/hand.png" type="Texture" id=10]
+[ext_resource path="res://Assets/character_idle.png" type="Texture" id=11]
+[ext_resource path="res://Assets/character.png" type="Texture" id=12]
+[ext_resource path="res://Assets/character_up.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/SoundArea.gd" type="Script" id=14]
+[ext_resource path="res://Assets/noise.png" type="Texture" id=15]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/SamplePlayer.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/StreamPlayer.tscn" type="PackedScene" id=18]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 96.7584
 
-[sub_resource type="CircleShape2D" id=2]
-
-custom_solver_bias = 0.0
-radius = 16.2026
-
-[sub_resource type="CircleShape2D" id=19]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 19.9758
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=4]
 
 resource/name = "Busted"
 length = 1.0
@@ -49,7 +43,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 11 ) ]
+"values": [ ExtResource( 9 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HandRight:transform/pos")
@@ -92,7 +86,7 @@ tracks/4/keys = {
 "values": [ Vector2( 42.3576, 33.2484 ), Vector2( 70.1406, -11.8419 ), Vector2( 68.3188, -32.793 ), Vector2( 52.8333, -44.1794 ), Vector2( 64.2957, -24.8983 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=5]
 
 resource/name = "Idle"
 length = 1.0
@@ -146,7 +140,7 @@ tracks/4/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 13 ) ]
+"values": [ ExtResource( 11 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("HandLeft:visibility/behind_parent")
@@ -169,7 +163,7 @@ tracks/6/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=6]
 
 resource/name = "WalkDown"
 length = 0.5
@@ -183,7 +177,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 13 ) ]
+"values": [ ExtResource( 11 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HandRight:visibility/behind_parent")
@@ -226,7 +220,7 @@ tracks/4/keys = {
 "values": [ Vector2( 42.3576, 33.2484 ), Vector2( 42.3576, 25.9611 ), Vector2( 42.3576, 43.724 ) ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=7]
 
 resource/name = "WalkLeft"
 length = 0.5
@@ -280,7 +274,7 @@ tracks/4/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 14 ) ]
+"values": [ ExtResource( 12 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("HandRight:visibility/behind_parent")
@@ -293,7 +287,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=8]
 
 length = 0.5
 loop = true
@@ -336,7 +330,7 @@ tracks/3/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 14 ) ]
+"values": [ ExtResource( 12 ) ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("HandLeft:visibility/behind_parent")
@@ -359,7 +353,7 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=9]
 
 resource/name = "WalkUp"
 length = 0.5
@@ -373,7 +367,7 @@ tracks/0/keys = {
 "times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 15 ) ]
+"values": [ ExtResource( 13 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HandRight:transform/pos")
@@ -416,7 +410,7 @@ tracks/4/keys = {
 "values": [ Vector2( 42.3576, 33.2484 ), Vector2( 42.8131, 25.5057 ), Vector2( 42.8131, 40.5359 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=26]
+[sub_resource type="CircleShape2D" id=10]
 
 custom_solver_bias = 0.0
 radius = 200.0
@@ -693,33 +687,11 @@ transform/pos = Vector2( -187.797, 762.78 )
 
 transform/pos = Vector2( 157.246, 1028.2 )
 
-[node name="Item2" type="Area2D" parent="Collectables" groups=[
-"Collectable",
-]]
+[node name="Item8" parent="Collectables" instance=ExtResource( 6 )]
 
-editor/display_folded = true
-transform/pos = Vector2( 445.406, 547.421 )
-input/pickable = true
-shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
-shapes/0/trigger = false
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-script/script = ExtResource( 7 )
+transform/pos = Vector2( 447.864, 561.356 )
 
-[node name="Sprite" type="Sprite" parent="Collectables/Item2"]
-
-texture = ExtResource( 8 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectables/Item2"]
-
-shape = SubResource( 2 )
-trigger = false
-_update_shape_index = 0
-
-[node name="Exit" parent="." instance=ExtResource( 9 )]
+[node name="Exit" parent="." instance=ExtResource( 7 )]
 
 [node name="Player" type="KinematicBody2D" parent="." groups=[
 "Player",
@@ -727,41 +699,41 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -384.584, 185.918 )
 input/pickable = false
-shapes/0/shape = SubResource( 19 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0.989624, 14.8445 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 10 )
+script/script = ExtResource( 8 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
 
 editor/display_folded = true
 transform/scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 11 )
+texture = ExtResource( 9 )
 
 [node name="HandRight" type="Sprite" parent="Player/Sprite"]
 
 transform/pos = Vector2( -37.6423, 34.1593 )
-texture = ExtResource( 12 )
+texture = ExtResource( 10 )
 
 [node name="HandLeft" type="Sprite" parent="Player/Sprite"]
 
 transform/pos = Vector2( 42.3576, 33.2484 )
-texture = ExtResource( 12 )
+texture = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Sprite"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Busted = SubResource( 20 )
-anims/Idle = SubResource( 21 )
-anims/WalkDown = SubResource( 22 )
-anims/WalkLeft = SubResource( 23 )
-anims/WalkRight = SubResource( 24 )
-anims/WalkUp = SubResource( 25 )
+anims/Busted = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/WalkDown = SubResource( 6 )
+anims/WalkLeft = SubResource( 7 )
+anims/WalkRight = SubResource( 8 )
+anims/WalkUp = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -770,7 +742,7 @@ autoplay = ""
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 
 transform/pos = Vector2( 0.989624, 14.8445 )
-shape = SubResource( 19 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
@@ -796,7 +768,7 @@ drag_margin/bottom = 0.2
 [node name="SoundArea" type="Area2D" parent="Player"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 26 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -806,11 +778,11 @@ angular_damp = 1.0
 monitorable = false
 collision/layers = 2
 collision/mask = 2
-script/script = ExtResource( 16 )
+script/script = ExtResource( 14 )
 
 [node name="Shape" type="CollisionShape2D" parent="Player/SoundArea"]
 
-shape = SubResource( 26 )
+shape = SubResource( 10 )
 trigger = false
 _update_shape_index = 0
 
@@ -819,10 +791,10 @@ _update_shape_index = 0
 visibility/opacity = 0.0
 visibility/blend_mode = 1
 transform/scale = Vector2( 0.16, 0.16 )
-texture = ExtResource( 17 )
+texture = ExtResource( 15 )
 modulate = Color( 0.500565, 0.770458, 0.949219, 1 )
 
-[node name="CanvasLayer" parent="." instance=ExtResource( 18 )]
+[node name="CanvasLayer" parent="." instance=ExtResource( 16 )]
 
 [node name="UI" parent="CanvasLayer"]
 
@@ -840,9 +812,11 @@ visibility/visible = false
 
 editor/display_folded = false
 
-[node name="SamplePlayer" parent="." instance=ExtResource( 19 )]
+[node name="SamplePlayer" parent="." instance=ExtResource( 17 )]
 
-[connection signal="body_enter" from="Collectables/Item2" to="Collectables/Item2" method="_on_item_body_enter"]
+[node name="StreamPlayer" parent="." instance=ExtResource( 18 )]
+
+stream/autoplay = true
 
 [connection signal="area_enter" from="Player/SoundArea" to="Player" method="_on_SoundArea_area_enter"]
 
